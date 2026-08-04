@@ -1,0 +1,14 @@
+{
+  "name": "hello-elementor-child",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-assets.mjs",
+    "watch": "node scripts/build-assets.mjs --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.8",
+    "chokidar": "^4.0.3",
+    "sass": "^1.90.0"
+  }
+}

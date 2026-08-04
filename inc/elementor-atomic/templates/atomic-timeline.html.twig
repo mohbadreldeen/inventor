@@ -1,0 +1,23 @@
+{% set default_item_index = settings['default-active-item'] | default(0) %}
+{% set start_side = (settings['start-from-left'] | default(false)) ? 'left' : 'right' %}
+{% set icon_content_gap = settings['icon-content-gap'] | default(72) %}
+{% set content_vertical_offset = settings['content-vertical-offset'] | default(0) %}
+{% set classes = ['e-con', 'e-atomic-element', 'inventor-atomic-timeline', 'inventor-atomic-timeline--flow', base_styles.base] | merge(settings.classes | default([])) | join(' ') %}
+<div class="{{ classes }} {{ editor_classes | default('') }}"
+	data-id="{{ id }}"
+	data-element_type="{{ type }}"
+	data-e-type="{{ type }}"
+	data-interaction-id="{{ interaction_id }}"
+	data-default-index="{{ default_item_index }}"
+	data-start-side="{{ start_side }}"
+	style="--timeline-icon-content-gap: {{ icon_content_gap }}px; --timeline-content-offset: {{ content_vertical_offset }}px;"
+	data-interactions="{{ interactions | json_encode | e('html_attr') }}"
+	{% if settings._cssid is defined and settings._cssid is not empty %}
+		id="{{ settings._cssid | e('html_attr') }}"
+	{% endif %}
+	{% if settings.attributes is defined and settings.attributes is not empty %}
+		{{ settings.attributes | raw }}
+	{% endif %}
+	{{ editor_attributes | default('') | raw }}>
+	<!-- elementor-children-placeholder -->
+</div>

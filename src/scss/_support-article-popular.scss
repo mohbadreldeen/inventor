@@ -1,0 +1,95 @@
+.inventor-popular-articles {
+	padding: var(--spacing-24, 24px);
+	border: 1px solid var(--neutral-200, #e5e7eb);
+	border-radius: 16px;
+	background: #ffffff;
+}
+
+.inventor-popular-articles__title {
+	margin: 0 0 30px;
+	font-size: 48px;
+	line-height: 1.1;
+	font-weight: 700;
+	color: var(--black-color, #303030);
+}
+
+.inventor-popular-articles__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	column-gap: 72px;
+ 
+}
+
+.inventor-popular-articles__item-link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 12px 0;
+	text-decoration: none;
+	color: #1a1a1a;
+}
+
+.inventor-popular-articles__item-text {
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 400;
+	color: #1a1a1a;
+}
+
+.inventor-popular-articles__arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	line-height: 1;
+	font-weight: 400;
+	color: #1a1a1a;
+	transform: translateY(-1px);
+}
+
+.inventor-popular-articles__item-link:hover .inventor-popular-articles__item-text,
+.inventor-popular-articles__item-link:focus-visible .inventor-popular-articles__item-text,
+.inventor-popular-articles__item-link:hover .inventor-popular-articles__arrow,
+.inventor-popular-articles__item-link:focus-visible .inventor-popular-articles__arrow {
+	color: var(--primary-color-inventor, #0344d5);
+}
+
+.inventor-popular-articles--empty {
+	padding: 24px;
+	border: 1px solid var(--neutral-200, #e5e7eb);
+	border-radius: 14px;
+	color: var(--neutral-600, #4d5761);
+	font-size: 16px;
+}
+
+@media (max-width: 1086px) {
+	.inventor-popular-articles {
+		padding: 32px 24px;
+	}
+
+	.inventor-popular-articles__title {
+		font-size: 36px;
+		margin-bottom: 24px;
+	}
+
+	.inventor-popular-articles__grid {
+		grid-template-columns: 1fr;
+		column-gap: 0;
+		row-gap: 10px;
+	}
+}
+
+@media (max-width: 767px) {
+	.inventor-popular-articles__title {
+		font-size: 30px;
+	}
+
+	.inventor-popular-articles__item-text {
+		font-size: 16px;
+		line-height: 26px;
+	}
+}
+

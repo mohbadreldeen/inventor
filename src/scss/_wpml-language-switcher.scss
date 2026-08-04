@@ -1,0 +1,96 @@
+@use "base";
+
+.elementor-widget-inventor-wpml-language-switcher .elementor-widget-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wpml-language-switcher {
+	display: inline-block;
+	color: var(--white-color, #fff);
+	font-size: 0.95rem;
+	font-weight: 600;
+	line-height: 1;
+	position: relative;
+}
+
+.wpml-language-switcher__dropdown {
+	display: inline-block;
+	position: relative;
+}
+
+.wpml-language-switcher__control {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-8, 0.5rem);
+	padding: 8px 12px;
+	border-radius: 12px;
+	background: transparent;
+	overflow: hidden;
+	cursor: pointer;
+	list-style: none;
+}
+
+.wpml-language-switcher__control::-webkit-details-marker {
+	display: none;
+}
+
+.wpml-language-switcher__icon {
+	width: 1rem;
+	height: 1rem;
+	display: block;
+	flex: 0 0 auto;
+}
+
+.wpml-language-switcher--disabled {
+	border-style: dashed;
+	color: var(--gray-400-color, #6b7280);
+}
+
+.wpml-language-switcher__current {
+	white-space: nowrap;
+}
+
+.wpml-language-switcher__menu {
+	display: none;
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 0;
+	z-index: 20;
+	min-width: 100%;
+	padding: 8px;
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: 0 12px 28px rgba(10, 15, 31, 0.16);
+}
+
+.wpml-language-switcher__dropdown[open] .wpml-language-switcher__menu {
+	display: block;
+}
+
+.wpml-language-switcher__option {
+	display: flex;
+	align-items: center;
+	padding: 10px 12px;
+	border-radius: 8px;
+	color: #000;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.wpml-language-switcher__option:hover,
+.wpml-language-switcher__option:focus-visible {
+	background: #f3f4f6;
+	color: #000;
+	outline: none;
+}
+
+.wpml-language-switcher__option.is-active {
+	font-weight: 700;
+	background: #f9fafb;
+}
+
+.wpml-language-switcher__option-code {
+	color: inherit;
+}

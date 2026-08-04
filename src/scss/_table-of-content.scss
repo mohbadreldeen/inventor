@@ -1,0 +1,34 @@
+@use "theme-tools" as tools;
+
+.table-of-content{
+	.elementor-toc__body{
+		padding-top:0px;
+	}
+	.elementor-toc__list-item-text{
+		 
+		 
+		display:flex;
+		flex-direction:row;
+		align-items:center;
+		justify-content:flex-start;
+		gap:8px;
+		&::before{
+			content:"";
+			width:2px;
+			height:16px;
+			background-color:#475569;
+			border-radius:4px;
+			
+		}
+		&:hover,
+		&.elementor-item-active{
+			&::before{
+				background-color: #{tools.inventor-primary()};
+				width:5px;
+			}
+			font-weight:600;
+			color: #{tools.inventor-primary()} !important;
+			
+		}
+	}
+}

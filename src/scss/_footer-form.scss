@@ -1,0 +1,181 @@
+/* footer form */
+@use "theme-tools" as tools;
+#footer-subscribe-form   {
+	max-width: 100%;
+	background: #{tools.inventor-primary()};
+	border-radius: 999px;
+	box-sizing: border-box;
+
+position: relative;
+	overflow: visible;
+ .elementor-shortcode,
+ form {
+	width: 100%;
+}
+
+ form {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	background: #ffffff;
+	border-radius: 999px;
+	box-sizing: border-box;
+	overflow: visible;
+	padding-inline:8px;
+	padding-inline-start: 24px;
+}
+
+ .forminator-row {
+	margin: 0 !important;
+	flex: 1 1 auto;
+	width: auto;
+}
+
+ .forminator-row-last {
+	flex: 0 0 auto;
+	width: auto;
+	margin-right: 4px;
+	padding-inline-end: 0;
+}
+
+ .forminator-col {
+	padding: 0;
+	margin: 0;
+}
+
+ .forminator-field {
+	margin: 0;
+}
+
+ .footer-subscribe-form-email {
+	flex: 1 1 auto;
+	min-width: 0;
+	padding-left: 20px;
+	padding-inline-end: 0;
+}
+
+ .footer-subscribe-form-email .forminator-field {
+	width: 100%;
+}
+
+ .forminator-input.forminator-email--field {
+	width: 100%;
+	height: 56px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #1f2937;
+	font-size: 18px;
+	font-weight: 500;
+	box-shadow: none;
+	outline: none;
+}
+
+ .forminator-input.forminator-email--field::placeholder {
+	font-family: "Inter", sans-serif;
+	font-size: 16px;
+	color: #a3a3a3;
+	opacity: 1;
+}
+
+ .footer-subscribe-form-submit {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #{tools.inventor-primary()};
+	box-shadow: none;
+	font-size: 0;
+	line-height: 0;
+	cursor: pointer;
+	flex: 0 0 auto;
+}
+
+ .footer-subscribe-form-submit::before {
+	content: "";
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-color: #ffffff;
+	-webkit-mask-image: url("/wp-content/themes/hello-elementor-child/assets/images/arrow-top-right.svg");
+	mask-image: url("/wp-content/themes/hello-elementor-child/assets/images/arrow-top-right.svg");
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+}
+
+ .footer-subscribe-form-submit:hover {
+	transform: translateY(-1px);
+	filter: brightness(1.03);
+	transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+ .forminator-response-message {
+	position: absolute;
+	top: calc(100% + 12px);
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 12px 16px;
+	border-radius: 16px;
+	box-sizing: border-box;
+	z-index: 2;
+}
+	.forminator-response-message.forminator-error{
+		color: red;
+	}
+	.forminator-response-message.forminator-success{
+		color: green;
+	}
+
+	&:has(.forminator-response-message.forminator-loading:not([style*="display: none"])), 
+	&:has(.forminator-response-message.forminator-error:not([aria-hidden="true"])),
+	&:has(.forminator-response-message.forminator-success:not([style*="display: none"])){
+		margin-top: 30px;
+	}
+	&:has(.forminator-response-message.forminator-error:not([aria-hidden="true"])) {
+		border: 1px solid red;
+	}
+	
+	&:has(.forminator-response-message.forminator-success:not([style*="display: none"])) {
+		border: 1px solid green;
+		
+	}
+
+
+ }
+ @media (max-width: 767px) {
+	#footer-subscribe-form {
+		padding: 8px;
+	
+
+	 form {
+		gap: 8px;
+	}
+
+	 .footer-subscribe-form-email {
+		padding-left: 16px;
+	}
+
+	 .forminator-input.forminator-email--field {
+		height: 56px;
+		font-size: 16px;
+	}
+
+	 .footer-subscribe-form-submit {
+		width: 48px;
+		height: 48px;
+	}
+	}
+}

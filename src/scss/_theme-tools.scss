@@ -1,0 +1,11 @@
+$inventor-primary-fallback: #0344d5;
+
+@function inventor-primary($fallback: $inventor-primary-fallback) {
+	@return var(--primary-color-inventor, #{$fallback});
+}
+
+@mixin elementor-editor-active($selector) {
+	.elementor-editor-active #{$selector} {
+		@content;
+	}
+}

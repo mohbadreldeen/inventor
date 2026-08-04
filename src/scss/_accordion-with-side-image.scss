@@ -1,0 +1,103 @@
+@use "theme-tools" as tools;
+
+.elementor {
+	.elementor-widget-n-accordion.accordion-with-side-image {
+		.e-n-accordion-item {
+			margin-bottom: 8px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.e-n-accordion-item-title {
+			position: relative;
+			padding: 12px 20px;
+			padding-inline-end: 56px;
+			border: 1px solid #f3f4f6 !important;
+			border-radius: 8px;
+			transition: color 0.3s ease-in-out;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				right: 20px;
+				width: 12px;
+				height: 12px;
+				transform: translateY(-50%);
+				transform-origin: center;
+				background-color: #{tools.inventor-primary()};
+				-webkit-mask-image: url("/wp-content/themes/hello-elementor-child/assets/images/arrow-top-right.svg");
+				mask-image: url("/wp-content/themes/hello-elementor-child/assets/images/arrow-top-right.svg");
+				-webkit-mask-repeat: no-repeat;
+				mask-repeat: no-repeat;
+				-webkit-mask-position: center;
+				mask-position: center;
+				-webkit-mask-size: contain;
+				mask-size: contain;
+				transition:
+					transform 0.25s ease,
+					opacity 0.25s ease;
+			}
+
+			&:hover::after {
+				transform: translateY(-50%) rotate(45deg);
+			}
+
+			.e-n-accordion-item-title-text {
+				transition: none;
+
+				color: #{tools.inventor-primary()};
+				span {
+					color: var(--black-color, #000);
+				}
+			}
+		}
+		.e-n-accordion-item[open] {
+			padding: 10px;
+			.e-n-accordion-item-title {
+				padding-left: 0;
+				padding-top: 0;
+				padding-inline-end: 20px;
+				border: 0 !important;
+				.e-n-accordion-item-title-text {
+					font-size: 24px;
+					font-weight: bold;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					align-items: flex-start;
+					gap: 8px;
+					transition: all 0.3s ease-in-out;
+				}
+
+				&::after {
+					opacity: 0;
+					transform: translateY(-50%) scale(0.8);
+					pointer-events: none;
+				}
+
+				span {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+.elementor .accordion-with-side-images-grid {
+	display: grid;
+	img {
+		grid-area: 1 / 1;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.45s ease;
+		will-change: opacity;
+
+		&.is-active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	}
+}

@@ -1,0 +1,24 @@
+.inventor-support-article-single-category .inventor-support-article-categories {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0;
+}
+
+.inventor-support-article-single-category .inventor-support-article-categories__card {
+	width: 100%;
+	padding: 0;
+	border: 0;
+	box-shadow: none;
+	transform: none;
+	transition: none;
+	pointer-events: auto;
+	text-decoration: none;
+}
+
+.inventor-support-article-single-category .inventor-support-article-categories__card:hover,
+.inventor-support-article-single-category .inventor-support-article-categories__card:focus-visible {
+	border: 0;
+	box-shadow: none;
+	transform: none;
+}
+

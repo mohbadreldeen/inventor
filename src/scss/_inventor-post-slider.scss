@@ -1,0 +1,238 @@
+.elementor {
+  .inventor-post-slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .inventor-post-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    
+  }
+
+  .inventor-post-slider-wrapper .swiper-pagination {
+    position: static;
+    margin-top: var(--spacing-16, 16px);
+    text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+  }
+
+  .inventor-post-slider-wrapper .swiper-pagination-bullet {
+	box-sizing: content-box;
+    width: 12px;
+    height: 12px;
+    margin: 0 6px !important;
+    border-radius: 50%;
+    border: 1px solid var(--primary-color-inventor, #0344D5);
+    background: transparent;
+    opacity: 1;
+    position: relative;
+	&.swiper-pagination-bullet-active {
+		width: 3px;
+		height: 3px;
+		border-width: 7px;
+ 	}
+  }
+
+  .inventor-post-slider .swiper-wrapper {
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+    align-items: stretch;
+  }
+
+  .inventor-post-slider .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    height: auto;
+  }
+
+  .inventor-post-slider .swiper-slide .inventor-post-item {
+    height: 100%;
+  }
+
+  .inventor-post-slider.inventor-post-slider--effect-coverflow .swiper-slide .inventor-post-item,
+  .inventor-post-slider.swiper-coverflow .swiper-slide .inventor-post-item {
+    transform: scale(0.88);
+    transform-origin: center center;
+    transition: transform 0.35s ease;
+  }
+
+  .inventor-post-slider.inventor-post-slider--effect-coverflow .swiper-slide-active .inventor-post-item,
+  .inventor-post-slider.swiper-coverflow .swiper-slide-active .inventor-post-item {
+    transform: scale(calc(var(--inventor-coverflow-active-width, 100) / 100), 1);
+  }
+
+  .inventor-post-slider.inventor-post-slider--effect-coverflow .swiper-slide:not(.swiper-slide-active) .inventor-post-item,
+  .inventor-post-slider.swiper-coverflow .swiper-slide:not(.swiper-slide-active) .inventor-post-item {
+    background: var(--inventor-coverflow-side-fill, var(--neutral-100, #f1f5ff));
+    overflow: hidden;
+  }
+
+  .inventor-post-slider.inventor-post-slider--effect-coverflow .swiper-slide:not(.swiper-slide-active) .inventor-post-item > *,
+  .inventor-post-slider.swiper-coverflow .swiper-slide:not(.swiper-slide-active) .inventor-post-item > * {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .inventor-post-slider.inventor-post-slider--effect-coverflow .swiper-slide .swiper-slide-shadow-left,
+  .inventor-post-slider.inventor-post-slider--effect-coverflow .swiper-slide .swiper-slide-shadow-right,
+  .inventor-post-slider.swiper-coverflow .swiper-slide .swiper-slide-shadow-left,
+  .inventor-post-slider.swiper-coverflow .swiper-slide .swiper-slide-shadow-right {
+	border-radius: 12px;
+    background-image: none !important;
+    background-color: var(--inventor-coverflow-side-fill, var(--neutral-100, #f1f5ff)) !important;
+  }
+
+  .inventor-post-slider-wrapper .inventor-slider-navigation {
+    display: contents;
+  }
+
+  .inventor-post-slider-wrapper .swiper-button-next,
+  .inventor-post-slider-wrapper .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    margin-top: 0;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+     
+    border: 1px solid var(--neutral-500, #d6dce3);
+    color: var(--neutral-500, #d6dce3);
+  
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .inventor-post-slider-wrapper .swiper-button-prev {
+    left: -50px;
+  }
+
+  .inventor-post-slider-wrapper .swiper-button-next {
+    right: -50px;
+  }
+
+  .inventor-post-slider-wrapper--navigation-inline {
+    padding-top: 64px;
+  }
+
+  .inventor-post-slider-wrapper--navigation-inline .inventor-slider-navigation {
+    position: absolute;
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+  }
+
+  .inventor-post-slider-wrapper--navigation-inline .swiper-button-prev,
+  .inventor-post-slider-wrapper--navigation-inline .swiper-button-next {
+    position: static;
+    top: auto;
+    right: auto;
+    left: auto;
+    margin-top: 0;
+    transform: none;
+  }
+
+  .inventor-post-slider-wrapper--nav-top-right .inventor-slider-navigation {
+    top: 0;
+    right: 0;
+  }
+
+  .inventor-post-slider-wrapper--nav-top-left .inventor-slider-navigation {
+    top: 0;
+    left: 0;
+  }
+
+  .inventor-post-slider-wrapper--nav-bottom-right {
+    padding-top: 0;
+    padding-bottom: 64px;
+  }
+
+  .inventor-post-slider-wrapper--nav-bottom-right .inventor-slider-navigation {
+    right: 0;
+    bottom: 0;
+  }
+
+  .inventor-post-slider-wrapper--nav-bottom-left {
+    padding-top: 0;
+    padding-bottom: 64px;
+  }
+
+  .inventor-post-slider-wrapper--nav-bottom-left .inventor-slider-navigation {
+    left: 0;
+    bottom: 0;
+  }
+
+  .inventor-post-slider-wrapper .inventor-slider-arrow-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  .inventor-post-slider-wrapper .swiper-button-next::after,
+  .inventor-post-slider-wrapper .swiper-button-prev::after {
+    content: none;
+  }
+
+  .inventor-post-slider-wrapper .swiper-button-next:hover,
+  .inventor-post-slider-wrapper .swiper-button-prev:hover {
+    border-color: var(--primary-color-inventor, #0344D5);
+    color: var(--white-color, #fff);
+    background: var(--primary-color-inventor, #0344D5);
+  }
+
+  .inventor-post-slider-wrapper--template-product-news-featured .swiper-button-next,
+  .inventor-post-slider-wrapper--template-product-news-featured .swiper-button-prev {
+    background: var(--white-color, #fff);
+    border-color: var(--primary-color-inventor, #0344D5);
+    color: var(--primary-color-inventor, #0344D5);
+  }
+
+  .inventor-post-slider-wrapper--template-product-news-featured .swiper-button-next:hover,
+  .inventor-post-slider-wrapper--template-product-news-featured .swiper-button-prev:hover {
+    background: var(--white-color, #fff);
+    border-color: var(--primary-color-inventor, #0344D5);
+    color: var(--primary-color-inventor, #0344D5);
+  }
+
+ 
+
+  .inventor-post-slider-wrapper .swiper-pagination-bullet-active::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--white-color, #fff);
+    transform: translate(-50%, -50%);
+  }
+
+  .inventor-post-slider-wrapper .swiper-pagination-bullet {
+    background: transparent;
+  }
+
+  @media (max-width: 767px) {
+    .inventor-post-slider-wrapper--navigation-inline {
+      padding-top: 56px;
+    }
+
+    .inventor-post-slider-wrapper--nav-bottom-right,
+    .inventor-post-slider-wrapper--nav-bottom-left {
+      padding-top: 0;
+      padding-bottom: 56px;
+    }
+  }
+}
+

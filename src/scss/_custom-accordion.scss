@@ -1,0 +1,461 @@
+@use "theme-tools" as tools;
+
+/* =========================================================
+   Custom Accordion
+   ========================================================= */
+
+.custom-accordion {
+	--acc-bg-active: #{tools.inventor-primary()};
+	--acc-bg-overlay: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+	--acc-panel-text: #ffffff;
+	--acc-collapsed-w: 84px;
+	--acc-gap: 12px;
+	--acc-radius: 24px;
+	--acc-transition: 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	gap: var(--acc-gap);
+	min-height: 360px;
+	width: 100%;
+	padding: 0;
+}
+
+.elementor .custom-accordion {
+	display: flex !important;
+	flex-wrap: nowrap !important;
+}
+
+.custom-accordion-item {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--acc-radius);
+	flex: 0 0 var(--acc-collapsed-w);
+	min-width: var(--acc-collapsed-w);
+	transition: flex-basis var(--acc-transition), flex-grow var(--acc-transition), width var(--acc-transition), max-width var(--acc-transition), padding var(--acc-transition);
+	cursor: pointer;
+	outline: none;
+	isolation: isolate;
+	height: 100%;
+}
+
+.elementor .custom-accordion > .custom-accordion-item {
+	flex: 0 0 var(--acc-collapsed-w) !important;
+	width: var(--acc-collapsed-w) !important;
+	max-width: var(--acc-collapsed-w) !important;
+	min-width: var(--acc-collapsed-w) !important;
+}
+
+.elementor .custom-accordion-item.is-active {
+	flex: 1 1 auto;
+	min-width: 0;
+	background: var(--acc-bg-active);
+	cursor: default;
+	display: flex;
+	align-items: stretch;
+ 
+	padding: 32px;
+	z-index: 2;
+}
+
+.elementor .custom-accordion > .custom-accordion-item.is-active {
+	flex: 1 1 0% !important;
+	width: auto !important;
+	max-width: none !important;
+	min-width: 0 !important;
+}
+
+.custom-accordion-item > .custom-accordion-trigger {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: stretch;
+	justify-content: stretch;
+	z-index: 4;
+	transition: none;
+}
+
+.custom-accordion-item.is-active > .custom-accordion-trigger {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	display: none;
+}
+
+.custom-accordion-item:not(.is-active) > :not(.custom-accordion-trigger) {
+	display: none !important;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.custom-accordion-item.is-active > :not(.custom-accordion-trigger) {
+	display: flex;
+	position: relative;
+	inset: auto;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+.custom-accordion-collapsed,
+.custom-accordion-expanded,
+.custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+.custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type) {
+	position: absolute;
+	inset: 0;
+	transition: none;
+}
+
+.custom-accordion-collapsed::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: var(--acc-bg-overlay);
+	pointer-events: none;
+	z-index: 0;
+}
+
+.custom-accordion-label {
+	position: relative;
+	z-index: 1;
+	color: #ffffff;
+	font-weight: 700;
+	font-size: clamp(22px, 1.6vw, 40px);
+	line-height: 1;
+	letter-spacing: 0.01em;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	text-transform: none;
+	white-space: nowrap;
+}
+
+.custom-accordion-item.is-active .custom-accordion-expanded,
+.custom-accordion-item.is-active > .custom-accordion-media:last-of-type:not(:only-of-type) {
+	position: relative;
+	inset: auto;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+.custom-accordion-item.is-active .custom-accordion-collapsed,
+.custom-accordion-item.is-active > .custom-accordion-media:first-of-type:not(:only-of-type) {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+.custom-accordion-media {
+	flex: 1 1 50%;
+	min-width: 0;
+	min-height: 0;
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+	overflow: hidden;
+	border-radius: 20px;
+}
+
+.custom-accordion-media img,
+.custom-accordion-media video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.custom-accordion-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.custom-accordion-trigger {
+	appearance: none;
+	width: 100%;
+	height: 100%;
+}
+
+.object-fit-cover {
+	object-fit: cover;
+}
+
+.custom-accordion-item:focus-visible,
+.custom-accordion-trigger:focus-visible {
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.55);
+	border-radius: inherit;
+}
+
+/* Prevent empty state in Elementor editor before JS initializes. */
+@include tools.elementor-editor-active(".custom-accordion:not([data-accordion-initialized='1']) .custom-accordion-item:first-child") {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+@include tools.elementor-editor-active(".custom-accordion:not([data-accordion-initialized='1']) .custom-accordion-item:first-child .custom-accordion-expanded, .custom-accordion:not([data-accordion-initialized='1']) .custom-accordion-item:first-child > .custom-accordion-media:last-of-type:not(:only-of-type)") {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transform: none;
+}
+
+@include tools.elementor-editor-active(".custom-accordion:not([data-accordion-initialized='1']) .custom-accordion-item:first-child .custom-accordion-collapsed, .custom-accordion:not([data-accordion-initialized='1']) .custom-accordion-item:first-child > .custom-accordion-media:first-of-type:not(:only-of-type)") {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: none;
+}
+
+@include tools.elementor-editor-active(".custom-accordion:not([data-accordion-initialized='1']) .custom-accordion-item:first-child > .custom-accordion-trigger") {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: none;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion {
+	display: grid;
+	grid-template-columns: 1fr;
+	min-height: 0;
+	gap: 10px;
+}
+
+body.e-is-device-mode.elementor-device-mobile .elementor .custom-accordion,
+body.e-is-device-mode.elementor-device-mobile_extra .elementor .custom-accordion,
+body.e-is-device-mode.elementor-device-tablet .elementor .custom-accordion,
+body.e-is-device-mode.elementor-device-tablet_extra .elementor .custom-accordion {
+	display: grid !important;
+	flex-wrap: nowrap !important;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item.is-active,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item.is-active,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item.is-active,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item.is-active {
+	flex: 1 1 auto;
+	min-width: 100%;
+	min-height: 88px;
+	height: auto;
+	gap: 0;
+	padding: 0;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item:not(.is-active),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item:not(.is-active),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item:not(.is-active),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item:not(.is-active) {
+	max-height: 90px;
+}
+
+body.e-is-device-mode.elementor-device-mobile .elementor .custom-accordion > .custom-accordion-item,
+body.e-is-device-mode.elementor-device-mobile .elementor .custom-accordion > .custom-accordion-item.is-active,
+body.e-is-device-mode.elementor-device-mobile_extra .elementor .custom-accordion > .custom-accordion-item,
+body.e-is-device-mode.elementor-device-mobile_extra .elementor .custom-accordion > .custom-accordion-item.is-active,
+body.e-is-device-mode.elementor-device-tablet .elementor .custom-accordion > .custom-accordion-item,
+body.e-is-device-mode.elementor-device-tablet .elementor .custom-accordion > .custom-accordion-item.is-active,
+body.e-is-device-mode.elementor-device-tablet_extra .elementor .custom-accordion > .custom-accordion-item,
+body.e-is-device-mode.elementor-device-tablet_extra .elementor .custom-accordion > .custom-accordion-item.is-active {
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 100% !important;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type) {
+	position: relative;
+	inset: auto;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item > .custom-accordion-trigger,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item > .custom-accordion-trigger,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item > .custom-accordion-trigger,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item > .custom-accordion-trigger {
+	position: relative;
+	inset: auto;
+	min-height: 88px;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type) {
+	min-height: 88px;
+	justify-content: flex-start;
+	padding: 20px;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-label,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-label,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-label,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-label {
+	writing-mode: horizontal-tb;
+	transform: none;
+	font-size: 24px;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type) {
+	display: none;
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	padding: 20px;
+	gap: 16px;
+	flex-direction: column;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item.is-active .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item.is-active > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item.is-active .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item.is-active > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item.is-active .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item.is-active > .custom-accordion-media:last-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item.is-active .custom-accordion-expanded,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item.is-active > .custom-accordion-media:last-of-type:not(:only-of-type) {
+	display: flex;
+}
+
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item.is-active .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-mobile .custom-accordion-item.is-active > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item.is-active .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-mobile_extra .custom-accordion-item.is-active > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item.is-active .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-tablet .custom-accordion-item.is-active > .custom-accordion-media:first-of-type:not(:only-of-type),
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item.is-active .custom-accordion-collapsed,
+body.e-is-device-mode.elementor-device-tablet_extra .custom-accordion-item.is-active > .custom-accordion-media:first-of-type:not(:only-of-type) {
+	display: none;
+}
+
+@media (max-width: 1199px) {
+	.custom-accordion {
+		--acc-collapsed-w: 68px;
+		min-height: 360px;
+	}
+
+	.custom-accordion-expanded,
+	.custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type) {
+		gap: 20px;
+		padding: 28px;
+	}
+
+	.custom-accordion-label {
+		font-size: clamp(18px, 2.2vw, 28px);
+	}
+}
+
+@media (max-width: 1086px) {
+	.custom-accordion {
+		display: grid;
+		grid-template-columns: 1fr;
+		min-height: 0;
+		gap: 10px;
+	}
+
+	.elementor .custom-accordion {
+		display: grid !important;
+		flex-wrap: nowrap !important;
+	}
+
+	.custom-accordion-item,
+	.custom-accordion-item.is-active {
+		flex: 1 1 auto;
+		min-width: 100%;
+		min-height: 88px;
+		height: auto;
+		gap: 0;
+		padding: 0;
+	}
+
+	.custom-accordion-item:not(.is-active) {
+		max-height: 90px;
+	}
+
+	.elementor .custom-accordion > .custom-accordion-item,
+	.elementor .custom-accordion > .custom-accordion-item.is-active {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 100% !important;
+	}
+
+	.custom-accordion-collapsed,
+	.custom-accordion-expanded,
+	.custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type),
+	.custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type) {
+		position: relative;
+		inset: auto;
+	}
+
+	.custom-accordion-item > .custom-accordion-trigger {
+		position: relative;
+		inset: auto;
+		min-height: 88px;
+	}
+
+	.custom-accordion-collapsed,
+	.custom-accordion-item > .custom-accordion-media:first-of-type:not(:only-of-type) {
+		min-height: 88px;
+		justify-content: flex-start;
+		padding: 20px;
+	}
+
+	.custom-accordion-label {
+		writing-mode: horizontal-tb;
+		transform: none;
+		font-size: 24px;
+	}
+
+	.custom-accordion-expanded,
+	.custom-accordion-item > .custom-accordion-media:last-of-type:not(:only-of-type) {
+		display: none;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+		padding: 20px;
+		gap: 16px;
+		flex-direction: column;
+	}
+
+	.custom-accordion-item.is-active .custom-accordion-expanded,
+	.custom-accordion-item.is-active > .custom-accordion-media:last-of-type:not(:only-of-type) {
+		display: flex;
+	}
+
+	.custom-accordion-item.is-active .custom-accordion-collapsed,
+	.custom-accordion-item.is-active > .custom-accordion-media:first-of-type:not(:only-of-type) {
+		display: none;
+	}
+}
+
+/* End Custom Accordion */

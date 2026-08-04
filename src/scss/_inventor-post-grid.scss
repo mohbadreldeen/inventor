@@ -1,0 +1,146 @@
+.elementor {
+.elementor-widget-inventor-post-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+}
+
+.inventor-post-grid-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.inventor-post-grid-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-64);
+}
+
+.inventor-post-grid-load-more {
+  appearance: none;
+  border: 1px solid var(--primary-color-inventor, #0344D5);
+  background: var(--primary-color-inventor, #0344D5);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 4px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.inventor-post-grid-load-more:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.inventor-post-grid-load-more:disabled,
+.inventor-post-grid-load-more.is-loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.inventor-post-grid-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--spacing-64);
+  justify-content: center;
+}
+
+.inventor-filter-btn {
+  appearance: none;
+  border: 1px solid #d6dce3;
+ 
+  color: #425466;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 999px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #F8FBFF;
+}
+
+.inventor-filter-btn:hover{
+  border-color: var(--primary-color-inventor, #0344D5);
+  color: var(--primary-color-inventor, #0344D5);
+  background: #F8FBFF;
+}
+.inventor-filter-btn.is-active {
+  border-color: var(--primary-color-inventor, #0344D5);
+  color: #fff;
+  background: var(--primary-color-inventor, #0344D5);
+}
+
+.inventor-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.inventor-post-item.is-filter-hidden {
+  display: none;
+}
+
+.inventor-post-item-vertical {
+  flex-direction: column;
+}
+
+.inventor-post-item-horizontal {
+  flex-direction: row;
+  align-items: center;
+}
+
+.inventor-post-item-horizontal .inventor-post-content {
+  width: 60%;
+}
+
+.inventor-post-item-horizontal-right {
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.inventor-post-item-horizontal-right .inventor-post-content {
+  width: 60%;
+}
+
+
+@media (max-width: 1024px) {
+  .inventor-post-item-horizontal-right .inventor-post-content {
+    width: 55%;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .inventor-post-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inventor-post-item-horizontal {
+    flex-direction: column;
+  }
+
+  .inventor-post-item-horizontal .inventor-post-content {
+    width: 100%;
+  }
+
+  .inventor-post-item-horizontal-right {
+    flex-direction: column;
+  }
+
+  .inventor-post-item-horizontal-right .inventor-post-content {
+    width: 100%;
+  }
+
+}
+
+.inventor-post-grid-wrapper .elementor-alert {
+  padding: 20px;
+  margin: 0;
+}
+
+}
+

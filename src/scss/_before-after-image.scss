@@ -1,0 +1,117 @@
+.wp-before-after-image {
+	--wp-before-after-position: 50%;
+	--wp-before-after-height: 500px;
+	display: block;
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	user-select: none;
+}
+
+.elementor-widget-inventor-before-after-image,
+.elementor-widget-inventor-before-after-image .elementor-widget-container {
+	display: block;
+	width: 100%;
+	min-height: var(--wp-before-after-height);
+}
+
+.wp-before-after-image__frame {
+	position: relative;
+	height: var(--wp-before-after-height);
+	min-height: var(--wp-before-after-height);
+	overflow: hidden;
+	border-radius: 20px;
+	background: #f3f4f6;
+}
+
+.wp-before-after-image__layer {
+	position: absolute;
+	inset: 0;
+	line-height: 0;
+}
+
+.wp-before-after-image__layer--after {
+	z-index: 1;
+}
+
+.wp-before-after-image__layer--before {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 2;
+	clip-path: inset(0 calc(100% - var(--wp-before-after-position)) 0 0);
+	transition: clip-path 0.1s linear;
+	will-change: clip-path;
+}
+
+.elementor .wp-before-after-image__image {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	pointer-events: none;
+	object-fit: cover;
+	object-position: center center;
+}
+ 
+
+.wp-before-after-image__divider {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--wp-before-after-position);
+	transform: translateX(-50%);
+	width: 2px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 0 0 1px rgba(3, 68, 213, 0.2);
+	z-index: 3;
+	pointer-events: none;
+}
+
+.wp-before-after-image__divider::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 48px;
+	height: 48px;
+	transform: translate(-50%, -50%);
+	background-image: url("/wp-content/themes/hello-elementor-child/assets/svg/before-after-handle.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.wp-before-after-image__divider::after {
+	content: none;
+}
+
+.wp-before-after-image__range {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: ew-resize;
+	z-index: 4;
+	touch-action: pan-y;
+}
+
+.wp-before-after-image__empty {
+	padding: 20px;
+	border: 1px dashed #cbd5e1;
+	border-radius: 16px;
+	color: #475569;
+}
+
+@media (max-width: 767px) {
+	.wp-before-after-image__divider::before {
+		width: 40px;
+		height: 40px;
+	}
+}

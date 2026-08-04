@@ -1,0 +1,101 @@
+@use "theme-tools" as tools;
+
+/*
+Available classes:
+ - entrance-animation
+ - ea-fade
+ - ea-slide-from-bottom
+ - ea-slide-from-top
+ - ea-slide-from-left
+ - ea-slide-from-right
+ - ea-blure
+ - ea-delay-100
+ - ea-delay-200
+ - ea-speed-300
+ - ea-speed-500
+ - ea-speed-700
+*/
+.entrance-animation {
+	--entrance-delay: 0ms;
+	--ea-opacity-start: 1;
+	--ea-translate-x-start: 0px;
+	--ea-translate-y-start: 0px;
+	--ea-filter-start: none;
+	--ea-duration: 1600ms;
+	--ea-ease: cubic-bezier(0.16, 1, 0.3, 1);
+	opacity: var(--ea-opacity-start) !important;
+	transform: translate3d(var(--ea-translate-x-start), var(--ea-translate-y-start), 0) !important;
+	filter: var(--ea-filter-start) !important;
+	will-change: opacity, transform, filter;
+	transition: opacity var(--ea-duration) ease-out, transform var(--ea-duration) var(--ea-ease), filter var(--ea-duration) ease-out !important;
+	transition-delay: var(--entrance-delay) !important;
+}
+
+.entrance-animation.ea-fade {
+	--ea-opacity-start: 0;
+}
+
+.entrance-animation.ea-slide-from-bottom {
+	--ea-translate-y-start: 40px;
+}
+
+.entrance-animation.ea-slide-from-top {
+	--ea-translate-y-start: -40px;
+}
+
+.entrance-animation.ea-slide-from-left {
+	--ea-translate-x-start: -40px;
+}
+
+.entrance-animation.ea-slide-from-right {
+	--ea-translate-x-start: 40px;
+}
+
+.entrance-animation.ea-blure {
+	--ea-filter-start: blur(14px);
+}
+
+.entrance-animation.is-animated-in {
+	opacity: 1 !important;
+	transform: translate3d(0, 0, 0) !important;
+	filter: none !important;
+	will-change: auto;
+}
+
+@include tools.elementor-editor-active(".entrance-animation") {
+	opacity: 1 !important;
+	transform: none !important;
+	filter: none !important;
+	transition: none !important;
+	will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.entrance-animation {
+		opacity: 1 !important;
+		transform: none !important;
+		filter: none !important;
+		transition: none;
+		will-change: auto;
+	}
+}
+
+.ea-delay-100 {
+	--entrance-delay: 100ms;
+}
+
+.ea-delay-200 {
+	--entrance-delay: 200ms;
+}
+
+.ea-speed-300 {
+	--ea-duration: 300ms;
+}
+
+.ea-speed-500 {
+	--ea-duration: 500ms;
+}
+
+.ea-speed-700 {
+	--ea-duration: 700ms;
+}

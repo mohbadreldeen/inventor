@@ -1,0 +1,14 @@
+.elementor .faq-accordion {
+	.e-n-accordion-item {
+		background-color: #f9fafb;
+		border-radius: var(--spacing-8, 8px);
+		overflow: hidden;
+		border: 1px solid #d2d6db;
+	}
+	.e-n-accordion-item .e-n-accordion-item-title .e-n-accordion-item-title-icon span > svg {
+		transition: all 0.3s ease-in-out;
+	}
+	.e-n-accordion-item[open] .e-n-accordion-item-title .e-n-accordion-item-title-icon span > svg {
+		transform: rotate(90deg);
+	}
+}
